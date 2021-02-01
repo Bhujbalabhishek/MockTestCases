@@ -13,8 +13,11 @@ def test_factorial_with_positive_integer(mock_fact):
 
     #failure
     mock_fact.return_value = None
-    res = fa(-5)
-    assert res is None
+    mock_fact.side_effect = ValueError("negative number not allowed")
+    try:
+        fa(-5)
+    except ValueError:
+        assert True
     
     mock_fact.assert_called_with(3)
     mock_fact.has_calls = [call(3)]
