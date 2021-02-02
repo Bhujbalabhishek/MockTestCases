@@ -1,10 +1,7 @@
-from random import randint
+import json
 
-
-def get_number():
-    number = randint(1, 100)
-
-    if number % 2 == 0:
-        return 'Even number: {}'.format(number)
-    else:
-        return 'Odd number: {}'.format(number)
+def get_json(filename):
+    try:
+        return json.loads(open(filename).read())
+    except(IOError, ValueError):
+        return None
